@@ -15,7 +15,7 @@ import java.util.*;
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Entity
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "users_unique_email_idx")})
-public class User extends AbstractNamedEntity{
+public class User extends AbstractNamedEntity {
 
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @Enumerated(EnumType.STRING)
@@ -23,7 +23,7 @@ public class User extends AbstractNamedEntity{
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
     @ElementCollection(fetch = FetchType.EAGER)
     @BatchSize(size = 200)
-    private Set <Roles> roles;
+    private Set<Roles> roles;
 
     @Column(name = "registered", nullable = false, columnDefinition = "timestamp default now()")
     @NotNull
@@ -42,27 +42,23 @@ public class User extends AbstractNamedEntity{
     @Column(name = "enabled", nullable = false, columnDefinition = "bool default true")
     private boolean enabled;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
-    @OrderBy("date DESC")
-    private List <Vote> votes;
-
     public User() {
     }
 
-    public User (User user){
-        this(user.getId(), user.getName(),user.getRegistered(),user.getEmail(),user.getPassword(),user.isEnabled(),user.getRoles());
+    public User(User user) {
+        this(user.getId(), user.getName(), user.getRegistered(), user.getEmail(), user.getPassword(), user.isEnabled(), user.getRoles());
     }
 
-    public User (Integer id, String name,  String email, String password, Roles role, Roles...roles){
-        this(id,name, new Date(),email,password,true,EnumSet.of(role, roles));
+    public User(Integer id, String name, String email, String password, Roles role, Roles... roles) {
+        this(id, name, new Date(), email, password, true, EnumSet.of(role, roles));
     }
 
-    public User (Integer id, String name, Date registered, String email, String password, boolean enabled, Collection <Roles> roles) {
+    public User(Integer id, String name, Date registered, String email, String password, boolean enabled, Collection<Roles> roles) {
         super(id, name);
-        this.email=email;
-        this.password=password;
-        this.registered=registered;
-        this.enabled=enabled;
+        this.email = email;
+        this.password = password;
+        this.registered = registered;
+        this.enabled = enabled;
         setRoles(roles);
     }
 
@@ -110,11 +106,4 @@ public class User extends AbstractNamedEntity{
         this.enabled = enabled;
     }
 
-    public List<Vote> getVotes() {
-        return votes;
-    }
-
-    public void setVotes(List<Vote> votes) {
-        this.votes = votes;
-    }
 }
