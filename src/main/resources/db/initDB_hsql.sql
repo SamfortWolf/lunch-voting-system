@@ -62,6 +62,6 @@ create table votes
     user_id             integer not null,
     restaurant_id       integer not null,
     constraint votes_idx unique (user_id, date),
-    foreign key (restaurant_id) references menus (id) on delete cascade,
+    foreign key (restaurant_id) references restaurants (id) on delete cascade,
     foreign key (user_id) references users (id) on delete cascade
 );
