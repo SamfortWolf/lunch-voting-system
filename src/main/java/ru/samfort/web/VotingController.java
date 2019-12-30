@@ -10,23 +10,28 @@ import ru.samfort.service.VotingService;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/rest/votes", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/rest/votes")
 public class VotingController {
 
     @Autowired
     private VotingService votingService;
 
-    @GetMapping
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Vote> getAll (){
         System.out.println("getAll");
         return votingService.getAll();
     }
 
-    @PostMapping("/{id}")
+    @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public Vote vote(@PathVariable int id){
-        System.out.println("addNew");
+    public Vote vote(@RequestParam(value = "id") int id){
+        System.out.println("vote for restaurant #"+id);
         return votingService.vote(id);
+    }
+
+    @GetMapping(value = "/text")
+    public String testUTF() {
+        return "Русский текст";
     }
 
 }

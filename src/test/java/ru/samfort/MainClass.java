@@ -10,7 +10,7 @@ import java.util.List;
 public class MainClass {
     public static void main(String[] args) {
         try (GenericXmlApplicationContext applicationContext = new GenericXmlApplicationContext()){
-            applicationContext.load("spring/spring_app.xml", /*"spring/spring_db.xml", */"spring/inmemory.xml");
+            applicationContext.load("spring/spring_app.xml", "spring/inmemory.xml");
             applicationContext.refresh();
 
             //System.out.println("Bean definition names: " + Arrays.toString(applicationContext.getBeanDefinitionNames()));

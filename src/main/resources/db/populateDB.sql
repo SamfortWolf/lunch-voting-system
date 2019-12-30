@@ -6,32 +6,38 @@ delete from USERS;
 delete from VOTES;
 -- alter sequence global_seq restart with 100000;
 
-insert into USERS (id, name, email, password) VALUES
-(0, 'User', 'user@yandex.ru', 'password'),
-(1, 'Admin', 'admin@gmail.com', 'admin');
+insert into USERS (name, email, password) VALUES
+('User', 'user@yandex.ru', 'password'),
+('Admin', 'admin@gmail.com', 'admin');
 
 insert into USER_ROLES ("USER_ID", "ROLE") VALUES
-(0, 'USER'),
-(1, 'ADMIN');
+(100000, 'USER'),
+(100001, 'ADMIN');
 
-insert into RESTAURANTS ("ID", "NAME", "ADDRESS") VALUES
-(2, 'МакДоналдс', 'Пушкарская 1'),
-(3, 'Шеймус', 'Комсомольский проспект 63');
+insert into RESTAURANTS ("NAME", "ADDRESS") VALUES
+('МакДоналдс', 'Пушкарская 1'),
+('Шеймус', 'Комсомольский проспект 63');
 
-insert into MENUS ("ID", "NAME", "RESTAURANT_ID", "DATE") VALUES
-(4, 'МакЗавтрак', 2, '2019-10-20'),
-(5, 'Комплексный обед', 2, current_date),
-(6, 'Ирландский завтрак', 3, '2019-10-20'),
-(7, 'Домашний ужин', 3, current_date);
+insert into MENUS ("NAME", "RESTAURANT_ID", "DATE") VALUES
+('МакЗавтрак', 100002, '2019-10-20'),
+('Комплексный обед', 100002, current_date),
+('Ирландский завтрак', 100003, '2019-10-20'),
+('Домашний ужин', 100003, current_date);--100007
 
-insert into DISHES ("ID", "NAME", "PRICE", "MENU_ID") VALUES
-(8, 'Чизбургер', 79, 5), (9, 'Бургер с яйцом и беконом', 99, 4),
-(10, 'Картошка фри', 49, 4), (11, 'Картошка фри', 49, 5),
-(12, 'Капучино', 69, 4), (13, 'Кока-Кола', 49, 5),
-(14, 'Яичница', 79, 6), (15, 'Жареные сосики', 79, 6),
-(16, 'Картофельное пюре', 49, 6), (17, 'Американо', 59, 6),
-(18, 'Овощной суп', 79, 7),(19, 'Айриш Стью', 159, 7),
-(20, 'Гиннесс', 149, 7);
+insert into DISHES ("NAME", "PRICE", "MENU_ID") VALUES
+('Чизбургер', 79, 100005),
+('Бургер с яйцом и беконом', 99, 100004),
+('Картошка фри', 49, 100004),
+('Картошка фри', 49, 100005),
+('Капучино', 69, 100004),
+('Кока-Кола', 49, 100005),
+('Яичница', 79, 100006),
+('Жареные сосики', 79, 100006),
+('Картофельное пюре', 49, 100006),
+('Американо', 59, 100006),
+('Овощной суп', 79, 100007),
+('Айриш Стью', 159, 100007),
+('Гиннесс', 149, 100007);
 
 
 
