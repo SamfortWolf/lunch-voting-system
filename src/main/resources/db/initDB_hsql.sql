@@ -41,7 +41,7 @@ create table menus
     name                varchar(255) not null,
     restaurant_id       integer not null,
     date                timestamp not null,
-    constraint menus_idx unique (restaurant_id, name),
+    constraint menus_idx unique (restaurant_id, date),
     foreign key (restaurant_id) references restaurants (id) on delete cascade
 );
 

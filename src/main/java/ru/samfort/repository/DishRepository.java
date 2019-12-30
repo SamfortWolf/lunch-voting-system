@@ -1,7 +1,7 @@
-package ru.samfort.voting.repository;
+package ru.samfort.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.samfort.voting.model.Dish;
+import ru.samfort.model.Dish;
 
 public interface DishRepository extends JpaRepository <Dish, Integer> {
 }

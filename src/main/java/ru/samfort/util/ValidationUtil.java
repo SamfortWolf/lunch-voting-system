@@ -1,4 +1,4 @@
-package ru.samfort.voting.util;
+package ru.samfort.util;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;

@@ -1,4 +1,4 @@
-package ru.samfort.voting.model;
+package ru.samfort.model;
 
 
 public enum Roles {

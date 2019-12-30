@@ -1,4 +1,4 @@
-package ru.samfort.voting.model;
+package ru.samfort.model;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;

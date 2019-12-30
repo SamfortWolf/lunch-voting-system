@@ -1,7 +1,7 @@
-package ru.samfort.voting.service;
+package ru.samfort.service;
 
 import org.springframework.stereotype.Service;
-import ru.samfort.voting.repository.UserRepository;
+import ru.samfort.repository.UserRepository;
 
 @Service
 public class UserService {

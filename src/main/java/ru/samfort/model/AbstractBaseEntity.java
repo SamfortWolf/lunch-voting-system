@@ -1,4 +1,4 @@
-package ru.samfort.voting.model;
+package ru.samfort.model;
 
 import org.hibernate.Hibernate;
 import org.springframework.data.domain.Persistable;

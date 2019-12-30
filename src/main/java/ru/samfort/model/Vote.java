@@ -1,4 +1,4 @@
-package ru.samfort.voting.model;
+package ru.samfort.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -14,7 +14,7 @@ public class Vote extends AbstractBaseEntity {
     @NotNull
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "restaurant_id", nullable = false)
     @NotNull
     private Restaurant restaurant;

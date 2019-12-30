@@ -1,6 +1,6 @@
-package ru.samfort.voting.util;
+package ru.samfort.util;
 
-import ru.samfort.voting.model.AbstractBaseEntity;
+import ru.samfort.model.AbstractBaseEntity;
 
 public class SecurityUtil {
 

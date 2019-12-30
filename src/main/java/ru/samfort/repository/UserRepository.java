@@ -1,7 +1,7 @@
-package ru.samfort.voting.repository;
+package ru.samfort.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.samfort.voting.model.User;
+import ru.samfort.model.User;
 
 public interface UserRepository extends JpaRepository <User, Integer> {
 }
