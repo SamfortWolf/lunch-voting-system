@@ -28,10 +28,4 @@ public class VotingController {
         System.out.println("vote for restaurant #"+id);
         return votingService.vote(id);
     }
-
-    @GetMapping(value = "/text")
-    public String testUTF() {
-        return "Русский текст";
-    }
-
 }
