@@ -16,9 +16,12 @@ public abstract class AbstractBaseEntity implements Persistable<Integer> {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
     protected Integer id;
 
+
+
     public AbstractBaseEntity(Integer id) {
         this.id = id;
     }
+
 
     public AbstractBaseEntity() {
     }
@@ -30,6 +33,7 @@ public abstract class AbstractBaseEntity implements Persistable<Integer> {
     public void setId(Integer id) {
         this.id = id;
     }
+
     @Override
     public boolean isNew() {
         return this.id == null;

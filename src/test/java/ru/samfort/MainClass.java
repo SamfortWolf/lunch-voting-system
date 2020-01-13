@@ -3,7 +3,7 @@ package ru.samfort;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import ru.samfort.model.Vote;
 import ru.samfort.util.SecurityUtil;
-import ru.samfort.web.VotingController;
+import ru.samfort.web.UserController;
 
 import java.util.List;
 
@@ -15,17 +15,17 @@ public class MainClass {
 
             //System.out.println("Bean definition names: " + Arrays.toString(applicationContext.getBeanDefinitionNames()));
 
-            VotingController votingController = applicationContext.getBean(VotingController.class);
+            UserController userController = applicationContext.getBean(UserController.class);
             SecurityUtil.setAuthUserId(0);
 
-            votingController.vote(3);
+            userController.vote(3);
             try {
                 Thread.sleep(1000);
-                votingController.vote(2);
+                userController.vote(2);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            List<Vote> votes = votingController.getAll();
+            List<Vote> votes = userController.getAllVotes();
             System.out.println(votes.get(0).getRestaurant().getName());
         }
     }

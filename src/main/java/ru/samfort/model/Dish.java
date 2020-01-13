@@ -21,17 +21,23 @@ public class Dish extends AbstractNamedEntity {
     @NotNull
     private Integer price;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "owner_id", nullable = false)
+    @NotNull
+    private User user;
+
     public Dish() {
     }
 
-    public Dish(String name, @NotNull Menu menu, @Range(min = 1) @NotNull Integer price) {
-        this(null, name, menu, price);
+    public Dish(String name, Menu menu, Integer price, User user) {
+        this(null, name, menu, price, user);
     }
 
-    public Dish(Integer id, String name, @NotNull Menu menu, @Range(min = 1) @NotNull Integer price) {
+    public Dish(Integer id, String name, Menu menu, Integer price, User user) {
         super(id, name);
         this.menu = menu;
         this.price = price;
+        this.user=user;
     }
 
     public Menu getMenu() {
@@ -48,5 +54,13 @@ public class Dish extends AbstractNamedEntity {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -15,23 +15,29 @@ public class Menu extends AbstractNamedEntity {
     @NotNull
     private LocalDate date;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
     private Restaurant restaurant;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "owner_id", nullable = false)
+    @NotNull
+    private User user;
+
     public Menu() {
     }
 
-    public Menu(String name, @NotNull LocalDate date, @NotNull Restaurant restaurant) {
-        this(null, name, date, restaurant);
+    public Menu(String name, LocalDate date, Restaurant restaurant, User user) {
+        this(null, name, date, restaurant, user);
     }
 
-    public Menu(Integer id, String name, @NotNull LocalDate date, @NotNull Restaurant restaurant) {
+    public Menu(Integer id, String name, LocalDate date, Restaurant restaurant, User user) {
         super(id, name);
         this.date = date;
         this.restaurant = restaurant;
+        this.user=user;
     }
 
     public LocalDate getDate() {
@@ -48,5 +54,13 @@ public class Menu extends AbstractNamedEntity {
 
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

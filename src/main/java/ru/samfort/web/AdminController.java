@@ -23,9 +23,10 @@ public class AdminController {
         return service.getAllDishes(menu_id);
     }
 
-    @PostMapping(value = "/dishes/{menu_id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity <Dish> createDish (@RequestBody Dish dish, @PathVariable int menu_id) {
-        dish.setMenu(service.getMenuById(menu_id));
+    @PostMapping(value = "/dishes", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity <Dish> createDish (@RequestBody Dish dish, @RequestParam int menu_id, @RequestParam int owner_id) {
+        dish.setMenu(service.getMenu(menu_id));
+        dish.setUser(service.getUser(owner_id));
         Dish newDish = service.createOrUpdateDish(dish);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/rest/admin" + "/{id}")

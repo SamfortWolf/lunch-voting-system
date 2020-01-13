@@ -8,4 +8,6 @@ import java.util.List;
 public interface DishRepository extends JpaRepository <Dish, Integer> {
 
     List<Dish> getAllByMenuId (int menu_id);
+
+    List<Dish> findAllByMenuId(int menu_id);
 }
