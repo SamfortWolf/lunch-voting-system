@@ -28,7 +28,8 @@ public class UserService {
     private final DishRepository dishRepository;
 
     @Autowired
-    public UserService(VoteRepository voteRepository, UserRepository userRepository, RestaurantRepository restaurantRepository, MenuRepository menuRepository, DishRepository dishRepository) {
+    public UserService(VoteRepository voteRepository, UserRepository userRepository,
+                       RestaurantRepository restaurantRepository, MenuRepository menuRepository, DishRepository dishRepository) {
         this.voteRepository = voteRepository;
         this.userRepository = userRepository;
         this.restaurantRepository = restaurantRepository;
@@ -37,19 +38,19 @@ public class UserService {
     }
 
 
-    public List<Vote> getAll () {
-        return voteRepository.getAllByUserId(SecurityUtil.getAuthUserId());
+    public List<Vote> getAll (int user_id) {
+        return voteRepository.getAllByUserId(user_id);
     }
 
-    public Vote vote(int restaurant_id) {
+    public Vote vote(int restaurant_id, int user_id) {
         LocalDateTime now = LocalDateTime.now();
         Restaurant restaurant = restaurantRepository.findById(restaurant_id);
         if (restaurant==null){
             throw new NotFoundException(String.format("Restaurant with id %s not found", restaurant_id));
         }
-        int user_id = SecurityUtil.getAuthUserId();
         boolean isTimeToVoteExpire = ValidationUtil.isTimeExpire(now);
-        log.debug(String.format("today is: %s, restaurant_id is %d, user_id is %d, time is expire? %s", now.toString(), restaurant_id, user_id, isTimeToVoteExpire));
+        log.debug(String.format("today is: %s, restaurant_id is %d, user_id is %d, time is expire? %s", now.toString(),
+                restaurant_id, user_id, isTimeToVoteExpire));
         Vote vote = voteRepository.findByUserIdAndDate(user_id, now.toLocalDate());
         if (vote == null) {
             vote = new Vote(userRepository.getOne(user_id), restaurant, now.toLocalDate());
