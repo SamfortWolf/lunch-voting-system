@@ -8,8 +8,8 @@
 
 insert into USERS (name, email, password)
 VALUES ('User', 'user@yandex.ru', 'password'),
-       ('Admin1', 'admin1@gmail.com', 'admin'),
-       ('Admin2', 'admin2@gmail.com', 'admin');--100002
+       ('Admin1', 'admin1@gmail.com', 'admin1'),
+       ('Admin2', 'admin2@gmail.com', 'admin2');--100002
 
 insert into USER_ROLES ("USER_ID", "ROLE")
 VALUES (100000, 'USER'),

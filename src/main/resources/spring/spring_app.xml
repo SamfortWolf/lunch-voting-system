@@ -9,6 +9,8 @@
 
     <context:annotation-config/>
 
+    <import resource="spring_security.xml"/>
+
     <context:component-scan base-package="ru.samfort.service"/>
 
     <tx:annotation-driven/>
