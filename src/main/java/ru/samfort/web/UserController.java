@@ -28,7 +28,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Vote> getAllVotes (){
+    public List<Vote> getAllVotes() {
         int user_id = SecurityUtil.getAuthUserId();
         List<Vote> votes = userService.getAll(user_id);
         log.info("GetAll votes");
@@ -37,7 +37,7 @@ public class UserController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Vote> vote(@RequestParam(value = "id") int id){
+    public ResponseEntity<Vote> vote(@RequestParam(value = "id") int id) {
         int user_id = SecurityUtil.getAuthUserId();
         Vote newVote = userService.vote(id, user_id);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -48,17 +48,23 @@ public class UserController {
     }
 
     @GetMapping(value = "/restaurants")
-    public List <Restaurant> GetAllRestaurants () {
-        return userService.getAllRestaurants();
+    public List<Restaurant> GetAllRestaurants() {
+        List<Restaurant> restaurants = userService.getAllRestaurants();
+        log.info("GetAll restaurants");
+        return restaurants;
     }
 
     @GetMapping(value = "/menus")
-    public List <Menu> GetAllMenus (@RequestParam int restaurant_id) {
-        return userService.getAllMenus(restaurant_id);
+    public List<Menu> GetAllMenus(@RequestParam int restaurant_id) {
+        List<Menu> menus = userService.getAllMenus(restaurant_id);
+        log.info("GetAll menus for restaurant {}", restaurant_id);
+        return menus;
     }
 
     @GetMapping(value = "/dishes")
-    public List <Dish> GetAllDishes (@RequestParam int menu_id) {
-        return userService.getAllDishes(menu_id);
+    public List<Dish> GetAllDishes(@RequestParam int menu_id) {
+        List<Dish> dishes = userService.getAllDishes(menu_id);
+        log.info("GetAll dishes for menu {}", menu_id);
+        return dishes;
     }
 }

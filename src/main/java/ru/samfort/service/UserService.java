@@ -2,15 +2,15 @@ package ru.samfort.service;
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.samfort.model.Dish;
-import ru.samfort.model.Menu;
-import ru.samfort.model.Restaurant;
-import ru.samfort.model.Vote;
+import ru.samfort.model.*;
 import ru.samfort.repository.*;
 import ru.samfort.util.ValidationUtil;
 import ru.samfort.util.exception.NotFoundException;
-import ru.samfort.util.SecurityUtil;
+import ru.samfort.web.LoggedUser;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,7 +18,7 @@ import java.util.List;
 import static org.slf4j.LoggerFactory.getLogger;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     private static final Logger log = getLogger(UserService.class);
     private final VoteRepository voteRepository;
@@ -38,14 +38,14 @@ public class UserService {
     }
 
 
-    public List<Vote> getAll (int user_id) {
+    public List<Vote> getAll(int user_id) {
         return voteRepository.getAllByUserId(user_id);
     }
 
     public Vote vote(int restaurant_id, int user_id) {
         LocalDateTime now = LocalDateTime.now();
         Restaurant restaurant = restaurantRepository.findById(restaurant_id);
-        if (restaurant==null){
+        if (restaurant == null) {
             throw new NotFoundException(String.format("Restaurant with id %s not found", restaurant_id));
         }
         boolean isTimeToVoteExpire = ValidationUtil.isTimeExpire(now);
@@ -55,7 +55,7 @@ public class UserService {
         if (vote == null) {
             vote = new Vote(userRepository.getOne(user_id), restaurant, now.toLocalDate());
             voteRepository.save(vote);
-            log.debug("New vote created: "+vote.toString());
+            log.debug("New vote created: " + vote.toString());
             return vote;
         } else {
             if (isTimeToVoteExpire) {
@@ -80,5 +80,15 @@ public class UserService {
 
     public List<Dish> getAllDishes(int menu_id) {
         return dishRepository.findAllByMenuId(menu_id);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userRepository.getByEmail(email.toLowerCase());
+        log.info("User roles is {}", user.getRoles());
+        if (user == null) {
+            throw new UsernameNotFoundException("User " + email + " is not found");
+        }
+        return new LoggedUser(user);
     }
 }

@@ -12,9 +12,9 @@ VALUES ('User', 'user@yandex.ru', 'password'),
        ('Admin2', 'admin2@gmail.com', 'admin2');--100002
 
 insert into USER_ROLES ("USER_ID", "ROLE")
-VALUES (100000, 'USER'),
-       (100001, 'ADMIN'),
-       (100002, 'ADMIN');
+VALUES (100000, 'ROLE_USER'),
+       (100001, 'ROLE_ADMIN'),
+       (100002, 'ROLE_ADMIN');
 
 
 insert into RESTAURANTS ("NAME", "ADDRESS", "OWNER_ID")

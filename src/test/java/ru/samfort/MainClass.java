@@ -16,7 +16,7 @@ public class MainClass {
             //System.out.println("Bean definition names: " + Arrays.toString(applicationContext.getBeanDefinitionNames()));
 
             UserController userController = applicationContext.getBean(UserController.class);
-            SecurityUtil.setAuthUserId(0);
+//            SecurityUtil.setAuthUserId(0);
 
             userController.vote(3);
             try {
