@@ -48,21 +48,21 @@ public class UserController {
     }
 
     @GetMapping(value = "/restaurants")
-    public List<Restaurant> GetAllRestaurants() {
+    public List<Restaurant> getAllRestaurants() {
         List<Restaurant> restaurants = userService.getAllRestaurants();
         log.info("GetAll restaurants");
         return restaurants;
     }
 
     @GetMapping(value = "/menus")
-    public List<Menu> GetAllMenus(@RequestParam int restaurant_id) {
+    public List<Menu> getAllMenus(@RequestParam int restaurant_id) {
         List<Menu> menus = userService.getAllMenus(restaurant_id);
         log.info("GetAll menus for restaurant {}", restaurant_id);
         return menus;
     }
 
     @GetMapping(value = "/dishes")
-    public List<Dish> GetAllDishes(@RequestParam int menu_id) {
+    public List<Dish> getAllDishes(@RequestParam int menu_id) {
         List<Dish> dishes = userService.getAllDishes(menu_id);
         log.info("GetAll dishes for menu {}", menu_id);
         return dishes;

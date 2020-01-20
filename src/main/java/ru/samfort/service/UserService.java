@@ -49,22 +49,22 @@ public class UserService implements UserDetailsService {
             throw new NotFoundException(String.format("Restaurant with id %s not found", restaurant_id));
         }
         boolean isTimeToVoteExpire = ValidationUtil.isTimeExpire(now);
-        log.debug(String.format("today is: %s, restaurant_id is %d, user_id is %d, time is expire? %s", now.toString(),
+        log.info(String.format("today is: %s, restaurant_id is %d, user_id is %d, time is expire? %s", now.toString(),
                 restaurant_id, user_id, isTimeToVoteExpire));
         Vote vote = voteRepository.findByUserIdAndDate(user_id, now.toLocalDate());
         if (vote == null) {
             vote = new Vote(userRepository.getOne(user_id), restaurant, now.toLocalDate());
             voteRepository.save(vote);
-            log.debug("New vote created: " + vote.toString());
+            log.info("New vote created: " + vote.toString());
             return vote;
         } else {
             if (isTimeToVoteExpire) {
-                log.debug("Voting time is expire and you already made a vote");
-                return null;
+                log.info("Voting time is expire and you already made a vote");
+                return vote;//need to change return value
             } else {
                 vote.setRestaurant(restaurant);
                 voteRepository.save(vote);
-                log.debug("Vote updated");
+                log.info("Vote updated");
                 return vote;
             }
         }
