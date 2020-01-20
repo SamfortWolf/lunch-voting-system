@@ -27,6 +27,17 @@ class UserServiceTest extends AbstractServiceTest{
     }
 
     @Test
+    void updateVote (){
+        Vote testVote = userService.vote(100004, USER.getId());
+
+    }
+
+    @Test
+    void expireVote () {
+
+    }
+
+    @Test
     void getAllRestaurants() {
     }
 
