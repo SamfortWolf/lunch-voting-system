@@ -9,7 +9,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.samfort.model.Dish;
 import ru.samfort.model.Menu;
 import ru.samfort.model.Restaurant;
-import ru.samfort.service.AdminService;
+import ru.samfort.service.AdminServiceImpl;
 import ru.samfort.util.SecurityUtil;
 
 import java.net.URI;
@@ -23,7 +23,7 @@ public class AdminController {
     private static final Logger log = getLogger(AdminController.class);
 
     @Autowired
-    AdminService service;
+    AdminServiceImpl service;
 
 //    RESTAURANTS
     @GetMapping (value = "/restaurants", produces = MediaType.APPLICATION_JSON_VALUE)
