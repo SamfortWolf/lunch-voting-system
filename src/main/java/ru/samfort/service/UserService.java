@@ -42,13 +42,13 @@ public class UserService implements UserDetailsService {
         return voteRepository.getAllByUserId(user_id);
     }
 
-    public Vote vote(int restaurant_id, int user_id) {
+    public Vote vote(int restaurant_id, boolean isTimeToVoteExpire, int user_id) {
         LocalDateTime now = LocalDateTime.now();
         Restaurant restaurant = restaurantRepository.findById(restaurant_id);
         if (restaurant == null) {
             throw new NotFoundException(String.format("Restaurant with id %s not found", restaurant_id));
         }
-        boolean isTimeToVoteExpire = ValidationUtil.isTimeExpire(now);
+//        boolean isTimeToVoteExpire = ValidationUtil.isTimeExpire(now);
         log.info(String.format("today is: %s, restaurant_id is %d, user_id is %d, time is expire? %s", now.toString(),
                 restaurant_id, user_id, isTimeToVoteExpire));
         Vote vote = voteRepository.findByUserIdAndDate(user_id, now.toLocalDate());
@@ -74,21 +74,25 @@ public class UserService implements UserDetailsService {
         return restaurantRepository.findAll();
     }
 
-    public List<Menu> getAllMenus(int restaurant_id) {
+    public List<Menu> getAllMenus () {return menuRepository.findAll();}
+
+    public List<Menu> getMenusByRestaurantId(int restaurant_id) {
         return menuRepository.findAllByRestaurantId(restaurant_id);
     }
 
-    public List<Dish> getAllDishes(int menu_id) {
+    public List<Dish> getAllDishes () {return dishRepository.findAll();}
+
+    public List<Dish> getDishesByMenuId(int menu_id) {
         return dishRepository.findAllByMenuId(menu_id);
     }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.getByEmail(email.toLowerCase());
-        log.info("User roles is {}", user.getRoles());
         if (user == null) {
             throw new UsernameNotFoundException("User " + email + " is not found");
         }
+        log.info("User roles is {}", user.getRoles());
         return new LoggedUser(user);
     }
 }

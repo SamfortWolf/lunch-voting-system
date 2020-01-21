@@ -13,8 +13,10 @@ import ru.samfort.model.Restaurant;
 import ru.samfort.model.Vote;
 import ru.samfort.service.UserService;
 import ru.samfort.util.SecurityUtil;
+import ru.samfort.util.ValidationUtil;
 
 import java.net.URI;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.slf4j.LoggerFactory.getLogger;
@@ -39,7 +41,7 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Vote> vote(@RequestParam(value = "id") int id) {
         int user_id = SecurityUtil.getAuthUserId();
-        Vote newVote = userService.vote(id, user_id);
+        Vote newVote = userService.vote(id, ValidationUtil.isTimeExpire(LocalDateTime.now()), user_id);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/rest/vote" + "/{id}")
                 .buildAndExpand(newVote.getId()).toUri();
@@ -56,14 +58,14 @@ public class UserController {
 
     @GetMapping(value = "/menus")
     public List<Menu> getAllMenus(@RequestParam int restaurant_id) {
-        List<Menu> menus = userService.getAllMenus(restaurant_id);
+        List<Menu> menus = userService.getMenusByRestaurantId(restaurant_id);
         log.info("GetAll menus for restaurant {}", restaurant_id);
         return menus;
     }
 
     @GetMapping(value = "/dishes")
     public List<Dish> getAllDishes(@RequestParam int menu_id) {
-        List<Dish> dishes = userService.getAllDishes(menu_id);
+        List<Dish> dishes = userService.getDishesByMenuId(menu_id);
         log.info("GetAll dishes for menu {}", menu_id);
         return dishes;
     }

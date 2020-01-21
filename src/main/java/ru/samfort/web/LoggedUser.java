@@ -22,7 +22,7 @@ public class LoggedUser extends org.springframework.security.core.userdetails.Us
         user = newUser;
     }
 
-    public User getUserTo() {
+    public User getUser() {
         return user;
     }
 

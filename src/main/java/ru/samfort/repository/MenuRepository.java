@@ -20,4 +20,5 @@ public interface MenuRepository extends JpaRepository<Menu, Integer> {
 
     @Query("SELECT m FROM Menu m WHERE m.id=:menu_id AND m.user.id=:admin_id")
     Optional<Menu> findByIdAndUserId(@Param("menu_id") int menu_id, @Param("admin_id") int admin_id);
+
 }

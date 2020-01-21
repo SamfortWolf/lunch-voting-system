@@ -24,7 +24,9 @@ public class TestData {
     public static final Menu m3 = new Menu(TEST_SEQ+7, "Irish Breakfast", LocalDate.parse("2019-10-20"), r2, ADMIN_2);
     public static final Menu m4 = new Menu(TEST_SEQ+8, "Home lunch", LocalDate.now(), r2, ADMIN_2);
 
-    public static final List <Menu> MENUS = List.of(m1,m2,m3,m4);
+    public static final List <Menu> ALL_MENUS = List.of(m1,m2,m3,m4);
+
+    public static final List <Menu> R1_MENUS = List.of(m1,m2);
 
     public static final Dish d1 = new Dish(TEST_SEQ+9, "Cheeseburger", m2, 79, ADMIN_1);
     public static final Dish d2 = new Dish(TEST_SEQ+10, "Egg and Bacon Burger", m1, 99, ADMIN_1);
@@ -39,8 +41,10 @@ public class TestData {
     public static final Dish d11 = new Dish(TEST_SEQ+19, "Irish stu", m4, 159, ADMIN_2);
     public static final Dish d12 = new Dish(TEST_SEQ+20, "Guinness", m4, 149, ADMIN_2);
 
-    public static final List <Dish> DISHES = List.of(d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11,d12);
+    public static final List <Dish> ALL_DISHES = List.of(d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11,d12);
 
-    public static final List <Vote> VOTES = List.of();
+    public static final List <Dish> M1_DISHES = List.of(d5,d2,d3);
+
+    public static final List <Vote> VOTES = List.of(new Vote(100021, USER, r1, LocalDate.now()));
 
 }
