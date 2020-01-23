@@ -31,8 +31,8 @@ public class AdminRestaurantService {
         return user;
     }
 
-    public Restaurant getRestaurantById(int restaurant_id) {
-        Restaurant restaurant = restaurantRepository.findById(restaurant_id);
+    public Restaurant getRestaurantById(int restaurant_id, int admin_id) {
+        Restaurant restaurant = restaurantRepository.findByIdAndUserId(restaurant_id, admin_id).orElse(null);
         if (restaurant == null){
             throw new NotFoundException("Restaurant with id " + restaurant_id + " is not found");
         }
@@ -65,5 +65,4 @@ public class AdminRestaurantService {
             restaurantRepository.save(restaurant);
         }
     }
-
 }

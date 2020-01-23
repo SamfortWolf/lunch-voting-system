@@ -39,11 +39,19 @@ public class AdminDishService {
     }
 
     public Menu getMenuById(int menu_id) {
-        Menu menu = menuRepository.getById(menu_id);
+        Menu menu = menuRepository.findById(menu_id);
         if (menu == null){
             throw new NotFoundException("Menu with id " + menu_id + " is not found");
         }
         return menu;
+    }
+
+    public Dish getDishById(int dish_id, int admin_id) {
+        Dish dish = dishRepository.findByIdAndUserId(dish_id, admin_id).orElse(null);
+        if (dish == null){
+            throw new NotFoundException("Dish with id " + dish_id + " is not found");
+        }
+        return dish;
     }
 
     public List<Dish> getAllDishes(int menu_id, int admin_id) {

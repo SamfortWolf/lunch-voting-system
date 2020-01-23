@@ -35,12 +35,20 @@ public class AdminMenuService {
         return user;
     }
 
-    public Restaurant getRestaurantById(int restaurant_id) {
-        Restaurant restaurant = restaurantRepository.findById(restaurant_id);
+    public Restaurant getRestaurantById(int restaurant_id, int admin_id) {
+        Restaurant restaurant = restaurantRepository.findByIdAndUserId(restaurant_id, admin_id).orElse(null);
         if (restaurant == null){
             throw new NotFoundException("Restaurant with id " + restaurant_id + " is not found");
         }
         return restaurant;
+    }
+
+    public Menu getMenuById(int menu_id) {
+        Menu menu = menuRepository.findById(menu_id);
+        if (menu == null){
+            throw new NotFoundException("Menu with id " + menu_id + " is not found");
+        }
+        return menu;
     }
 
     public List<Menu> getAllMenus(int restaurant_id, int admin_id) {

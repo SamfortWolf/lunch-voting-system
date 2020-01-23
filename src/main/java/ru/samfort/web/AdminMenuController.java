@@ -35,7 +35,7 @@ public class AdminMenuController {
     public ResponseEntity<Menu> create (@RequestBody Menu menu, @RequestParam int restaurant_id){
         int admin_id = SecurityUtil.getAuthUserId();
         menu.setUser(service.getUserById(admin_id));
-        menu.setRestaurant(service.getRestaurantById(restaurant_id));
+        menu.setRestaurant(service.getRestaurantById(restaurant_id, admin_id));
         Menu newMenu = service.createMenu(menu);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/rest/admin/menus" + "/{id}")

@@ -44,7 +44,7 @@ public class UserService implements UserDetailsService {
 
     public Vote vote(int restaurant_id, boolean isTimeToVoteExpire, int user_id) {
         LocalDateTime now = LocalDateTime.now();
-        Restaurant restaurant = restaurantRepository.findById(restaurant_id);
+        Restaurant restaurant = restaurantRepository.findById(restaurant_id).orElse(null);
         if (restaurant == null) {
             throw new NotFoundException(String.format("Restaurant with id %s not found", restaurant_id));
         }

@@ -3,6 +3,7 @@ package ru.samfort.service;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.util.Throwables.getRootCause;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -12,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
         "classpath:spring/spring_mvc.xml"
 })
 //@Sql(scripts = {"classpath:db/initDB_hsql.sql","classpath:db/populateDB.sql"}, config = @SqlConfig(encoding = "UTF-8"))
+@Transactional
 abstract class AbstractServiceTest {
 
 

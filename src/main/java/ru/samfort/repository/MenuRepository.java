@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public interface MenuRepository extends JpaRepository<Menu, Integer> {
 
-    Menu getById(int menu_id);
+    Menu findById(int menu_id);
 
     List<Menu> findAllByRestaurantId(int restaurant_id);
 

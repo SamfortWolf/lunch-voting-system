@@ -29,7 +29,7 @@
 
     <!-- Hibernate -->
     <hibernate.version>5.4.7.Final</hibernate.version>
-    <hibernate-validator.version>6.1.0.Final</hibernate-validator.version>
+    <hibernate-validator.version>6.0.17.Final</hibernate-validator.version>
     <javax-el.version>3.0.1-b11</javax-el.version>
 
     <jackson-json.version>2.10.1</jackson-json.version>
@@ -153,11 +153,11 @@
     </dependency>
 
     <!--- ORM -->
-<!--    <dependency>-->
-<!--      <groupId>org.hibernate</groupId>-->
-<!--      <artifactId>hibernate-core</artifactId>-->
-<!--      <version>${hibernate.version}</version>-->
-<!--    </dependency>-->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>${hibernate.version}</version>
+    </dependency>
     <dependency>
       <groupId>org.hibernate.validator</groupId>
       <artifactId>hibernate-validator</artifactId>
@@ -170,12 +170,12 @@
     </dependency>
 
     <!--http://hibernate.org/validator/documentation/getting-started/#unified-expression-language-el-->
-<!--    <dependency>-->
-<!--      <groupId>org.glassfish</groupId>-->
-<!--      <artifactId>javax.el</artifactId>-->
-<!--      <version>${javax-el.version}</version>-->
-<!--      <scope>provided</scope>-->
-<!--    </dependency>-->
+    <dependency>
+      <groupId>org.glassfish</groupId>
+      <artifactId>javax.el</artifactId>
+      <version>${javax-el.version}</version>
+      <scope>provided</scope>
+    </dependency>
 
     <!--JSON-->
     <dependency>
@@ -247,12 +247,12 @@
 
 
 
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>jul-to-slf4j</artifactId>
-      <version>${slf4j.version}</version>
-      <scope>runtime</scope>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.slf4j</groupId>-->
+<!--      <artifactId>jul-to-slf4j</artifactId>-->
+<!--      <version>${slf4j.version}</version>-->
+<!--      <scope>runtime</scope>-->
+<!--    </dependency>-->
 
     <!--Web-->
     <dependency>

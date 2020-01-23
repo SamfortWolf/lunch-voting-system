@@ -3,6 +3,7 @@ package ru.samfort.service;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.transaction.annotation.Transactional;
 import ru.samfort.model.Dish;
 import ru.samfort.model.Menu;
 import ru.samfort.model.Restaurant;
@@ -14,6 +15,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static ru.samfort.TestData.*;
 
+@Transactional
 class UserServiceTest extends AbstractServiceTest {
 
     @Autowired
@@ -21,9 +23,10 @@ class UserServiceTest extends AbstractServiceTest {
 
     @Test
     void getAll() {
-        userService.vote(100003, false, USER.getId());
+        Vote vote = userService.vote(100003, false, USER.getId());
         List<Vote> votes = userService.getAll(USER.getId());
-        assertEquals(votes, VOTES);
+        VOTE.setId(vote.getId());
+        assertEquals(votes, List.of(VOTE));
     }
 
     @Test
@@ -50,7 +53,7 @@ class UserServiceTest extends AbstractServiceTest {
     @Test
     void getAllRestaurants() {
         List<Restaurant> restaurants = userService.getAllRestaurants();
-        assertEquals(restaurants, RESTAURANTS);
+        assertEquals(restaurants, ALL_RESTAURANTS);
     }
 
     @Test

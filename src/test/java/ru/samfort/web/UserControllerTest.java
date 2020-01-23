@@ -18,7 +18,7 @@ public class UserControllerTest extends AbstractControllerTest{
     public UserControllerTest() {
         super("/rest/vote");
     }
-
+/*
     @Test
     public void getUnAuth () throws Exception {
         mockMvc.perform(get(""))
@@ -45,5 +45,5 @@ public class UserControllerTest extends AbstractControllerTest{
 
     @Test
     public void getAllDishes() {
-    }
+    }*/
 }
