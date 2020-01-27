@@ -1,6 +1,7 @@
 package ru.samfort.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -36,7 +37,7 @@ abstract class AbstractControllerTest {
     private final String url;
 
     public AbstractControllerTest(String url) {
-        this.url = url + '/';
+        this.url = url;
     }
 
     @PostConstruct

@@ -51,6 +51,6 @@ public class TestData {
 
     public static final List <Dish> M1_DISHES = List.of(D5, D2, D3);
 
-    public static final Vote VOTE = new Vote(USER, R1, LocalDate.now());
+    public static final Vote VOTE = new Vote(TEST_SEQ+21, USER, R1, LocalDate.now());
 
 }

@@ -15,7 +15,7 @@ public class MainClass {
             applicationContext.refresh();
 
             UserController userController = applicationContext.getBean(UserController.class);
-            TestUtils.mockAuthorize(TestData.USER);
+            TestUtil.mockAuthorize(TestData.USER);
 
             userController.vote(100004);
             try {
