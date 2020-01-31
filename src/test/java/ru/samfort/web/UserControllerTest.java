@@ -21,7 +21,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-@Transactional
 public class UserControllerTest extends AbstractControllerTest{
 
 
@@ -31,6 +30,7 @@ public class UserControllerTest extends AbstractControllerTest{
 
     @Test
     public void getUnAuth () throws Exception {
+
         mockMvc.perform(get(""))
                 .andExpect(status().isUnauthorized());
     }
@@ -46,6 +46,7 @@ public class UserControllerTest extends AbstractControllerTest{
 
     @Test
     public void vote() throws Exception {
+        VOTE.setId(TEST_SEQ+21);
         mockMvc.perform(post("/rest/vote").param("id","100003").with(httpBasic("user@yandex.ru","password")))
                 .andDo(print())
                 .andExpect(status().isCreated())

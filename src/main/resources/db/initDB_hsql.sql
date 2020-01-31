@@ -1,9 +1,9 @@
-drop table users if exists;
-drop table restaurants if exists;
-drop table menus if exists;
-drop table dishes if exists;
-drop table votes if exists;
-drop table user_roles if exists;
+drop table users if exists cascade;
+drop table restaurants if exists cascade;
+drop table menus if exists cascade;
+drop table dishes if exists cascade;
+drop table votes if exists cascade;
+drop table user_roles if exists cascade;
 drop sequence global_seq if exists;
 
 create sequence global_seq as integer start with 100000;
